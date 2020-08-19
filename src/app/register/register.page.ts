@@ -19,7 +19,8 @@ export class RegisterPage implements OnInit {
     private alertController: AlertController) {
     translate.setDefaultLang('en');
   }
-
+  arabic: boolean = false
+  message: string = "Registration Successful";
   response: any;
   list = [];
   ngOnInit() {
@@ -35,8 +36,7 @@ export class RegisterPage implements OnInit {
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Registration',
-      message: '<strong>Successful</strong>',
+      message: this.message,
       buttons: [
         {
           text: 'Okay',
@@ -52,8 +52,22 @@ export class RegisterPage implements OnInit {
 
   showSelectValue(mySelect) {
     console.log(mySelect.value);
-    if (mySelect.value === "en") { this.translate.use("en") }
-    else if (mySelect.value === "es") { this.translate.use("es") }
+    if (mySelect.value === "en") {
+      this.translate.use("en");
+      this.arabic = false;
+      this.message = "Registration Successful";
+
+    }
+    else if (mySelect.value === "es") {
+      this.translate.use("es");
+      this.arabic = false;
+      this.message = "Registro Exitoso";
+    }
+    else if (mySelect.value === "ar") {
+      this.translate.use("ar");
+      this.arabic = true;
+      this.message = "تم التسجيل بنجاح";
+    }
 
   }
   logForm(f) {

@@ -4,13 +4,14 @@
     <ion-select style="max-width: 60px ;" placeholder="en" #mySelect (ionChange)="showSelectValue(mySelect)"
       okText="Okay" cancelText="Dismiss">
       <ion-select-option value="en">en</ion-select-option>
+      <ion-select-option value="ar">ar</ion-select-option>
       <ion-select-option value="es">es</ion-select-option>
     </ion-select>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form #f="ngForm" (ngSubmit)="logForm(f)">
+  <form [ngClass]="{'ar-label': arabic}" #f="ngForm" (ngSubmit)="logForm(f)">
     <ion-item>
       <ion-label position="floating">{{ 'name' | translate }}</ion-label>
       <ion-input #name="ngModel" type="text" ngModel name="name" required></ion-input>
@@ -23,19 +24,19 @@
 
     </ion-item>
     <ion-item>
-      <ion-label position="floating">{{ 'phone' | translate }}</ion-label>
+      <ion-label position="floating">{{ 'Phone' | translate }}</ion-label>
       <ion-input #tel="ngModel" type="tel" ngModel name="tel" required tel pattern="^[0-9]{10}$|^[0-9]{9}$">
       </ion-input>
       <p class="errorMessage" *ngIf="!tel.valid && tel.touched">*{{ 'telError' | translate }}</p>
-
     </ion-item>
+
     <ion-item>
-      <ion-label id="5">{{ 'category' | translate }}</ion-label>
+      <ion-label *ngIf="!arabic">{{ 'category' | translate }}</ion-label>
       <ion-select #category="ngModel" placeholder="Select One" ngModel name="category" required aria-required="true">
         <ion-select-option *ngFor="let opt of list" value={{opt.merchant_category}} required>{{opt.merchant_category}}
         </ion-select-option>
       </ion-select>
-
+      <ion-label *ngIf="arabic">{{ 'category' | translate }}</ion-label>
     </ion-item>
     <p class="selectErrorMessage" *ngIf="!category.valid && category.touched">*{{ 'categoryError' | translate }}</p>
 
