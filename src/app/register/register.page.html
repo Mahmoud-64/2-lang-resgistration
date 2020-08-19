@@ -1,31 +1,44 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-title>{{ 'register' | translate }}</ion-title>
+    <ion-select style="max-width: 60px ;" placeholder="en" #mySelect (ionChange)="showSelectValue(mySelect)"
+      okText="Okay" cancelText="Dismiss">
+      <ion-select-option value="en">en</ion-select-option>
+      <ion-select-option value="es">es</ion-select-option>
+    </ion-select>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="logForm()">
+  <form #f="ngForm" (ngSubmit)="logForm(f)">
     <ion-item>
-      <ion-label position="floating">Name</ion-label>
-      <ion-input></ion-input>
+      <ion-label position="floating">{{ 'name' | translate }}</ion-label>
+      <ion-input #name="ngModel" type="text" ngModel name="name" required></ion-input>
+      <p class="errorMessage" *ngIf="!name.valid && name.touched">*{{ 'nameError' | translate }}</p>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input></ion-input>
+      <ion-label position="floating">{{ 'email' | translate }}</ion-label>
+      <ion-input #email="ngModel" type="email" ngModel name="email" required email></ion-input>
+      <p class="errorMessage" *ngIf="!email.valid && email.touched">*{{ 'emailError' | translate }}</p>
+
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Phone Number</ion-label>
-      <ion-input></ion-input>
+      <ion-label position="floating">{{ 'phone' | translate }}</ion-label>
+      <ion-input #tel="ngModel" type="tel" ngModel name="tel" required tel pattern="^[0-9]{10}$|^[0-9]{9}$">
+      </ion-input>
+      <p class="errorMessage" *ngIf="!tel.valid && tel.touched">*{{ 'telError' | translate }}</p>
+
     </ion-item>
     <ion-item>
-      <ion-label id="5">Category</ion-label>
-      <ion-select placeholder="Select One">
-        <ion-select-option *ngFor="let opt of list" value={{opt.merchant_category}}>{{opt.merchant_category}}
+      <ion-label id="5">{{ 'category' | translate }}</ion-label>
+      <ion-select #category="ngModel" placeholder="Select One" ngModel name="category" required aria-required="true">
+        <ion-select-option *ngFor="let opt of list" value={{opt.merchant_category}} required>{{opt.merchant_category}}
         </ion-select-option>
       </ion-select>
-    </ion-item>
 
-    <ion-button type="submit" expand="full">Add Todo</ion-button>
+    </ion-item>
+    <p class="selectErrorMessage" *ngIf="!category.valid && category.touched">*{{ 'categoryError' | translate }}</p>
+
+    <ion-button [disabled]="!f.valid" type="submit" expand="full">{{ 'submit' | translate }}</ion-button>
   </form>
 </ion-content>

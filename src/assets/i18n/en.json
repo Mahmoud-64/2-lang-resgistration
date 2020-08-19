@@ -1,0 +1,14 @@
+{
+    "register": "Register",
+    "selectLanguage": "Select languuage",
+    "name": "Name",
+    "email": "Email",
+    "Phone": "Phone",
+    "category": "Category",
+    "submit": "Submit",
+    "confirm": "confirm",
+    "nameError": "please enter a valid name",
+    "emailError": "please enter a valid email",
+    "telError": "please enter valid telphone nunber",
+    "categoryError": "merchant category is required"
+}

@@ -1,0 +1,14 @@
+{
+    "register": "Registrarse",
+    "selectLanguage": "Seleccione el idioma",
+    "name": "Nombre",
+    "email": "Ele-mail",
+    "phone": "Teléfono",
+    "category": "Categoría",
+    "submit": "Enviar",
+    "confirm": "confirmaa",
+    "nameError": "Por favor ingrese un nombre valido",
+    "emailError": "Por favor introduzca una dirección de correo válida",
+    "telError": "por favor ingrese un número de teléfono válido",
+    "categoryError": "la categoría de comerciante es obligatoria"
+}
